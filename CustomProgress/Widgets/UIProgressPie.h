@@ -9,17 +9,24 @@
 #import <UIKit/UIKit.h>
 #import "AbsProgressView.h"
 
-
 /**
  饼状进度条
  */
-@interface ProgressPie : AbsProgressView
+@interface UIProgressPie : AbsProgressView
+
+typedef NS_ENUM(NSInteger, UIProgressPieStyle) {
+    UIProgressPieStyleStroke,
+    UIProgressPieStyleFill,
+};
 
 + (id)initWithStartAngle:(float)startAngle
               andBgColor:(UIColor *)bgColor
           andBorderColor:(UIColor *)borderColor
           andCircleColor:(UIColor *)circleColor
         andProgressColor:(UIColor *)progressColor;
+
+@property (nonatomic,assign) float strokeWidth;
+@property (nonatomic,assign) UIProgressPieStyle style;
 
 // 开始的角度
 @property (nonatomic,assign) float startAngle;

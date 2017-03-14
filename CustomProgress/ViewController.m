@@ -7,11 +7,11 @@
 //
 
 #import "ViewController.h"
-#import "ProgressPie.h"
+#import "UIProgressPie.h"
 
 @interface ViewController ()<ProgressDelegate>
 {
-    ProgressPie *_progress;
+    UIProgressPie *_progress;
 }
 
 @end
@@ -21,12 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _progress = [[ProgressPie alloc]init];
-//    _progress =[ProgressPie initWithStartAngle:0
-//                                    andBgColor:[UIColor brownColor]
-//                                andBorderColor:[UIColor cyanColor]
-//                                andCircleColor:[UIColor grayColor]
-//                              andProgressColor:[UIColor redColor]];
+//    _progress = [[ProgressPie alloc]init];
+    _progress =[UIProgressPie initWithStartAngle:0
+                                    andBgColor:[UIColor brownColor]
+                                andBorderColor:[UIColor cyanColor]
+                                andCircleColor:[UIColor grayColor]
+                              andProgressColor:[UIColor redColor]];
     _progress.delegate = self;
     _progress.frame = CGRectMake(50, 50, 200, 200);
     [self.view addSubview:_progress];

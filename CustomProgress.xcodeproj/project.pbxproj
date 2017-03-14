@@ -15,7 +15,7 @@
 		809926371E77C89A004B8915 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 809926351E77C89A004B8915 /* LaunchScreen.storyboard */; };
 		809926421E77C89A004B8915 /* CustomProgressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 809926411E77C89A004B8915 /* CustomProgressTests.m */; };
 		8099264D1E77C89A004B8915 /* CustomProgressUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8099264C1E77C89A004B8915 /* CustomProgressUITests.m */; };
-		8099265D1E77C907004B8915 /* ProgressPie.m in Sources */ = {isa = PBXBuildFile; fileRef = 8099265C1E77C907004B8915 /* ProgressPie.m */; };
+		8099265D1E77C907004B8915 /* UIProgressPie.m in Sources */ = {isa = PBXBuildFile; fileRef = 8099265C1E77C907004B8915 /* UIProgressPie.m */; };
 		809926601E77C96B004B8915 /* AbsProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8099265F1E77C96B004B8915 /* AbsProgressView.m */; };
 /* End PBXBuildFile section */
 
@@ -53,8 +53,8 @@
 		809926481E77C89A004B8915 /* CustomProgressUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomProgressUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8099264C1E77C89A004B8915 /* CustomProgressUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomProgressUITests.m; sourceTree = "<group>"; };
 		8099264E1E77C89A004B8915 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8099265B1E77C907004B8915 /* ProgressPie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProgressPie.h; path = Widgets/ProgressPie.h; sourceTree = "<group>"; };
-		8099265C1E77C907004B8915 /* ProgressPie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProgressPie.m; path = Widgets/ProgressPie.m; sourceTree = "<group>"; };
+		8099265B1E77C907004B8915 /* UIProgressPie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIProgressPie.h; path = Widgets/UIProgressPie.h; sourceTree = "<group>"; };
+		8099265C1E77C907004B8915 /* UIProgressPie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIProgressPie.m; path = Widgets/UIProgressPie.m; sourceTree = "<group>"; };
 		8099265E1E77C96B004B8915 /* AbsProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbsProgressView.h; path = Widgets/AbsProgressView.h; sourceTree = "<group>"; };
 		8099265F1E77C96B004B8915 /* AbsProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbsProgressView.m; path = Widgets/AbsProgressView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,8 +150,8 @@
 		8099265A1E77C8B0004B8915 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				8099265B1E77C907004B8915 /* ProgressPie.h */,
-				8099265C1E77C907004B8915 /* ProgressPie.m */,
+				8099265B1E77C907004B8915 /* UIProgressPie.h */,
+				8099265C1E77C907004B8915 /* UIProgressPie.m */,
 				8099265E1E77C96B004B8915 /* AbsProgressView.h */,
 				8099265F1E77C96B004B8915 /* AbsProgressView.m */,
 			);
@@ -291,7 +291,7 @@
 				8099262F1E77C89A004B8915 /* ViewController.m in Sources */,
 				8099262C1E77C89A004B8915 /* AppDelegate.m in Sources */,
 				809926291E77C89A004B8915 /* main.m in Sources */,
-				8099265D1E77C907004B8915 /* ProgressPie.m in Sources */,
+				8099265D1E77C907004B8915 /* UIProgressPie.m in Sources */,
 				809926601E77C96B004B8915 /* AbsProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
