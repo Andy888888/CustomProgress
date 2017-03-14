@@ -29,6 +29,7 @@
         self.progressColor = [UIColor redColor];
         
         self.style = UIProgressPieStyleStroke;
+        self.strokeWidth = 15;
         self.padding = 5;
         [self setValue:@"100" forKeyPath:@"fullProgress"];
     }
@@ -100,42 +101,60 @@
     CGContextSetStrokeColorWithColor(context, self.bgColor.CGColor);
     CGContextFillRect(context,CGRectMake(0, 0, self.frame.size.width, self.frame.size.height));
     
-    if(self.style == UIProgressPieStyleStroke){
-        
-        // 边框圆
-        CGContextSetStrokeColorWithColor(context, self.borderColor.CGColor);
-        CGContextSetFillColorWithColor(context, self.borderColor.CGColor);
-        CGContextSetLineWidth(context, 10.0);//线的宽度
-        CGContextAddArc(context, _centerX, _centerY, _radius - 10, 0, 2*PI, 0);
-        CGContextDrawPath(context, kCGPathStroke);
-        
-        // 边框圆
-        CGContextSetStrokeColorWithColor(context, self.progressColor.CGColor);
-        CGContextSetFillColorWithColor(context, self.progressColor.CGColor);
-        CGContextSetLineWidth(context, 10.0);//线的宽度
-        CGContextAddArc(context, _centerX, _centerY, _radius - 10, 0, endAngle * PI / 180, 0);
-        CGContextDrawPath(context, kCGPathStroke);
-    }else{
+    
+    if(self.style == UIProgressPieStyleFill){
         // 边框圆
         CGContextSetStrokeColorWithColor(context, self.borderColor.CGColor);
         CGContextSetFillColorWithColor(context, self.borderColor.CGColor);
         CGContextSetLineWidth(context, 3.0);//线的宽度
         CGContextAddArc(context, _centerX, _centerY, _radius, 0, 2*PI, 0);
         CGContextDrawPath(context, kCGPathStroke);
-        // 背景圆
-        CGContextSetFillColorWithColor(context, self.circleColor.CGColor);
+    }
+    // 背景圆
+    CGContextSetFillColorWithColor(context, self.circleColor.CGColor);
+    CGContextSetLineWidth(context, 0);//线的宽度
+    CGContextAddArc(context, _centerX, _centerY, _radius, 0, 2*PI, 0);
+    CGContextDrawPath(context, kCGPathFillStroke);
+    
+    // 画扇形进度
+    CGContextSetFillColorWithColor(context, self.progressColor.CGColor);
+    // 以10为半径围绕圆心画指定角度扇形
+    CGContextMoveToPoint(context, _centerX, _centerY);
+    CGContextAddArc(context, _centerX, _centerY, _radius,  self.startAngle * PI / 180, endAngle * PI / 180, 0);
+    CGContextClosePath(context);
+    CGContextDrawPath(context, kCGPathFillStroke);
+    
+    if(self.style == UIProgressPieStyleStroke){
+        // 中间圆遮盖
+        CGContextSetFillColorWithColor(context, self.bgColor.CGColor);
         CGContextSetLineWidth(context, 0);//线的宽度
-        CGContextAddArc(context, _centerX, _centerY, _radius, 0, 2*PI, 0);
+        CGContextAddArc(context, _centerX, _centerY, _radius - self.strokeWidth, 0, 2*PI, 0);
         CGContextDrawPath(context, kCGPathFillStroke);
         
-        // 画扇形进度
-        CGContextSetFillColorWithColor(context, self.progressColor.CGColor);
-        // 以10为半径围绕圆心画指定角度扇形
-        CGContextMoveToPoint(context, _centerX, _centerY);
-        CGContextAddArc(context, _centerX, _centerY, _radius,  self.startAngle * PI / 180, endAngle * PI / 180, 0);
-        CGContextClosePath(context);
-        CGContextDrawPath(context, kCGPathFillStroke);
+        
+        NSString *percentStr = [NSString stringWithFormat:@"%d％",self.progress];
+        
+        
+        float newRadius = _radius - self.strokeWidth;
+        CGRect rect1 = CGRectMake(_centerX - newRadius, _centerY - newRadius, newRadius*2, newRadius*2);
+        
+        //段落格式
+        NSMutableParagraphStyle *textStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
+        textStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        textStyle.alignment = NSTextAlignmentCenter;//水平居中
+        //字体
+        UIFont  *font = [UIFont boldSystemFontOfSize:15.0];
+        //构建属性集合
+        NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:textStyle};
+        
+        //获得size
+        CGSize strSize = [percentStr sizeWithAttributes:attributes];
+        CGFloat marginTop = (rect1.size.height - strSize.height)/2;
+        //垂直居中要自己计算
+        CGRect r = CGRectMake(rect1.origin.x, rect1.origin.y + marginTop,rect1.size.width, strSize.height);
+        [percentStr drawInRect:r withAttributes:attributes];
     }
+    
     
     
     CGContextStrokePath(context);

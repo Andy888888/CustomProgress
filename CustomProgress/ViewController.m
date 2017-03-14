@@ -21,14 +21,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    _progress = [[ProgressPie alloc]init];
-    _progress =[UIProgressPie initWithStartAngle:0
-                                    andBgColor:[UIColor brownColor]
-                                andBorderColor:[UIColor cyanColor]
-                                andCircleColor:[UIColor grayColor]
-                              andProgressColor:[UIColor redColor]];
+      _progress = [[UIProgressPie alloc]init];
+//    _progress =[UIProgressPie initWithStartAngle:0
+//                                    andBgColor:[UIColor brownColor]
+//                                andBorderColor:[UIColor cyanColor]
+//                                andCircleColor:[UIColor grayColor]
+//                              andProgressColor:[UIColor redColor]];
     _progress.delegate = self;
-    _progress.frame = CGRectMake(50, 50, 200, 200);
+    _progress.strokeWidth = 15;
+    _progress.style = UIProgressPieStyleStroke;
+    _progress.frame = CGRectMake(50, 50, 120, 120);
     [self.view addSubview:_progress];
     
     
